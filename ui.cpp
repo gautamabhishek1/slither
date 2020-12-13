@@ -4,6 +4,10 @@ void init_ui()
 {
     setlocale(LC_ALL,"");
     initscr();
+    nodelay(stdscr, TRUE);
+    noecho();
+    curs_set(0);
+    keypad(stdscr, TRUE);
 }
 
 void tear_down_ui()

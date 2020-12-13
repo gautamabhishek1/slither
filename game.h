@@ -3,7 +3,12 @@
 #define DEF_GAME
 
 #include "curses.h"
+#include "game.h"
+#include "ui.h"
+#include "snake.h"
+#include "food.h"
+using namespace std;
 
-void game_logic();
+void execute_frame();
 
 #endif

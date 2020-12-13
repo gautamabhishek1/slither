@@ -1,17 +1,29 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
 
 #include "ui.h"
 #include "game.h"
-
+#include "constants.h"
 
 void event_loop()
 {
+    auto last_time = chrono::system_clock::now();
+    auto current_time = last_time;
+    int dt;
+
     while(true){
+        do{
+        current_time = chrono::system_clock::now();
+        dt = chrono::duration_cast<std::chrono::microseconds>(current_time - last_time).count();
+    } while(dt<TIME_DELAY_BETWEEN_FRAMES);
+
+    last_time = current_time;
+        
         erase();
-        paint_border();
-        game_logic();
+        execute_frame();
         refresh();
+     
     }
 }
 int main()
