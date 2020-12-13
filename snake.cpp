@@ -1,7 +1,7 @@
 #include"snake.h"
 
 vector<pair<int,int>> body;
-
+pair<int,int> last_tail_location;
 void init_snake()
 {
     body.clear();
@@ -21,10 +21,11 @@ void paint_snake()
 
 pair<int, int> move_snake(int direction)
 {
+    last_tail_location=body.back();
     body.pop_back();
     pair<int,int> head= body[0];
     pair<int,int> new_head= {head.first, head.second};
-
+ 
     if(direction== LEFT){
         new_head.second --;
     }
@@ -42,7 +43,7 @@ pair<int, int> move_snake(int direction)
     return new_head;
 }
 
-// void grow_snake()
-// {
-    
-// }
+void grow_snake()
+{
+    body.push_back(last_tail_location);
+}

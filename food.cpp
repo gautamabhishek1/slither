@@ -20,7 +20,7 @@ void paint_food() {
     }
 }
 
-bool try_consure_food(pair<int,int>head){
+bool try_consume_food(pair<int,int>head){
     for(int i=0; i<nibbles.size();i++)
     {
         if(head.first == nibbles[i].first and head.second==nibbles[i].second){
