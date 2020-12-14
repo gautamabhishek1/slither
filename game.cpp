@@ -1,10 +1,10 @@
 #include "game.h"
-#include "constants.h"
 
 int direction;
 int game_state= BEFORE_START;
 int score;
 int lives;
+bool snake_displayed = false;
 
 void start_game()
 {
@@ -28,11 +28,17 @@ void paint_status()
     for(int i=0; i<lives; i++){
     addstr("O");
     }
+
     if(game_state == BEFORE_START){
         move(LINES-1,5);
         addstr("Press space to start");
     } else if(game_state == STARTED) {
         //
+    }
+    else if(game_state == SNAKE_RESET) {
+        move(LINES-1,5);
+        addstr("You just lost a Life! Press Space to continue...");
+    
     } else {
         move(LINES-1,5);
         addstr(" [Press SPACE to restart] [Q to quit] ");
@@ -75,16 +81,30 @@ bool execute_frame()
 
         if(has_collision()){
             lives--;
-            reset_snake(); 
+            reset_snake();
+            game_state = SNAKE_RESET; 
+
             if(lives == -1){
             end_game();
             }
         }
+        
+    } else if(game_state == SNAKE_RESET) {
+        if(key == 32){
+            game_state = STARTED;
+        }
+        if(snake_displayed){
+            paint_snake();
+        }
+        snake_displayed = !snake_displayed;
+        paint_food();
+
+
     } else {
         paint_snake();
         paint_food();
         if(key == 32){
-        start_game();
+            start_game();
         }
         if(key == QUIT){
             return true;
