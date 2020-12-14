@@ -21,7 +21,10 @@ void event_loop()
     last_time = current_time;
         
         erase();
-        execute_frame();
+        bool exit = execute_frame();
+        if(exit){
+            break;
+        }
         refresh();
      
     }
@@ -31,6 +34,6 @@ int main()
     init_ui();
     event_loop();
     tear_down_ui();
-    cout<<endl<<"thanks for playing slither"<<endl<<endl;
+    cout<<endl<<"Thanks for playing slither!"<<endl<<endl;
     return 0;
 }

@@ -9,6 +9,6 @@
 #include "food.h"
 using namespace std;
 
-void execute_frame();
+bool execute_frame();
 
 #endif

@@ -10,6 +10,7 @@ void init_snake()
     body.push_back({10,12});
 
 }
+
 void paint_snake()
 {
     for(int i=0;i<body.size();i++){
@@ -47,3 +48,28 @@ void grow_snake()
 {
     body.push_back(last_tail_location);
 }
+
+void reset_snake()
+{
+    init_snake();
+}
+
+bool has_collision()
+{
+    pair<int,int> head = body[0];
+    int x=head.first;
+    int y=head.second;
+
+    if(x==0 or x == LINES-1 or y==0 or y==COLS -1){
+        return true;
+    }
+
+    for(int i= 1; i<body.size(); i++){
+        if(head == body[i])
+        return true;
+    }
+    return false;
+}
+
+
+   
