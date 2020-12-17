@@ -3,7 +3,7 @@
 #define DEF_GAME
 
 #include "curses.h"
-#include "game.h"
+#include "constants.h"
 #include "ui.h"
 #include "snake.h"
 #include "food.h"

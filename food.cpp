@@ -12,12 +12,14 @@ void init_food(){
 }   
 
 void paint_food() {
+    attron(COLOR_PAIR(FOOD_COLOR_PAIR));
     for(int i=0; i<nibbles.size(); i++)
     {
         pair<int, int> location = nibbles[i];
         move(location.first, location.second);
-        addstr("x");
+        addstr("\u25CE");
     }
+    attroff(COLOR_PAIR(FOOD_COLOR_PAIR));
 }
 
 bool try_consume_food(pair<int,int>head){

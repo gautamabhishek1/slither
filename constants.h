@@ -16,4 +16,10 @@ const int STARTED = 1;
 const int ENDED = 2;
 const int SNAKE_RESET = 3;
 const int FOOD_COUNT = 5;
+
+const int FOOD_COLOR_PAIR = 1;
+const int SNAKE_COLOR_PAIR = 2;
+const int BORDER_COLOR_PAIR = 3;
+const int STATUS_COLOR_PAIR = 4;
+
 #endif

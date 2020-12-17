@@ -23,26 +23,33 @@ void end_game(){
 void paint_status()
 {
     move(0,5);
-    printw("Score %d", score);
-    move(0, COLS-10);
+	attron(COLOR_PAIR(STATUS_COLOR_PAIR));
+
+    printw("[Score %d]", score);
+    move(0, COLS-20);
+    addstr("[Lives: ");
     for(int i=0; i<lives; i++){
-    addstr("O");
+    addstr("\u2665");
     }
+    addstr("]");
+
 
     if(game_state == BEFORE_START){
-        move(LINES-1,5);
+        move(LINES-1,50);
         addstr("Press space to start");
     } else if(game_state == STARTED) {
         //
     }
     else if(game_state == SNAKE_RESET) {
-        move(LINES-1,5);
-        addstr("You just lost a Life! Press Space to continue...");
+        move(LINES-1,50);
+        addstr("YOU JUST LOST A LIFE! Press Space to continue...");
     
     } else {
-        move(LINES-1,5);
-        addstr(" [Press SPACE to restart] [Q to quit] ");
+        move(LINES-1,50);
+        addstr("GAME OVER! [Press SPACE to restart] [Q to quit] ");
     }
+    attroff(COLOR_PAIR(STATUS_COLOR_PAIR));
+    attron(A_BOLD);
 }
 
 bool execute_frame()
@@ -91,6 +98,7 @@ bool execute_frame()
         
     } else if(game_state == SNAKE_RESET) {
         if(key == 32){
+           // direction = RIGHT;
             game_state = STARTED;
         }
         if(snake_displayed){

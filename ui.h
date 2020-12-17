@@ -1,5 +1,7 @@
 #include <curses.h>
 #include <iostream>
+#include "constants.h"
+
 #ifndef DEF_UI
 
 #define DEF_UI

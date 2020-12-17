@@ -13,11 +13,14 @@ void init_snake()
 
 void paint_snake()
 {
+	attron(COLOR_PAIR(SNAKE_COLOR_PAIR));
+
     for(int i=0;i<body.size();i++){
         auto location= body[i];
         move(location.first, location.second);
-        addstr("#");
+        addstr("\u2592");
     }
+    attroff(COLOR_PAIR(SNAKE_COLOR_PAIR));
 }
 
 pair<int, int> move_snake(int direction)
